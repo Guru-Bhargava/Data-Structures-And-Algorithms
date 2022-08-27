@@ -1,3 +1,6 @@
+/* 
+    Approach-1
+*/
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -18,3 +21,27 @@ public:
         }
 };
 
+
+/* 
+    Approach-2
+*/
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int need,ans,ans1;
+        for(int i=0;i<nums.size();++i)
+        {
+            need=target-nums[i];
+            ans1=i;
+            auto it=find(nums.begin()+i+1,nums.end(),need);
+            if(it!=nums.end())
+            {
+                ans=it-nums.begin();
+                break;
+            }
+        }
+        return{ans,ans1};
+        }
+        
+};
