@@ -1,3 +1,5 @@
+/*Memoization*/
+
 class Solution {
 public:
     
@@ -20,5 +22,33 @@ public:
         int m=mat[0].size();
          vector<vector<int>> dp(n,vector<int>(m,-1));
          return f(n-1,m-1,mat,dp);
+    }
+};
+
+
+
+/*Tabulation*/
+class Solution {
+public:
+    int uniquePathsWithObstacles(vector<vector<int>>& mat) {  
+        int m=mat.size();
+        int n=mat[0].size();
+        vector<vector<int>>dp(m,vector<int>(n,0));
+        for(int i=0;i<m;++i)
+        {
+            for(int j=0;j<n;++j)
+            {
+                if(mat[i][j]==1) dp[i][j]=0;
+                else if(i==0 and j==0) dp[i][j]=1;
+                else{
+                    int up=0;
+                    if(i>=1) up=dp[i-1][j];
+                    int down=0;
+                    if(j>=1) down=dp[i][j-1];
+                    dp[i][j]=up+down;
+                }
+            }
+        }
+        return(dp[m-1][n-1]);
     }
 };
